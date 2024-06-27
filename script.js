@@ -1,5 +1,5 @@
-let x = true;
-let c = 0;
+let x = true; //turn X
+let c = 0; 
 
 const grids = document.querySelectorAll('.grid');
 const turn = document.querySelector('.turn');
@@ -15,10 +15,9 @@ canvas.width = 1000;
 
 ctx.font = '70px arial';
 ctx.strokeStyle = 'white';
-
 ctx.strokeText('TIC TAC TOE',420,80);
 
-
+// timer for player 1
 function startTimer1(duration, display) {
     let timer = duration, seconds;
     timerInterval = setInterval(() => { 
@@ -45,6 +44,8 @@ function startTimer1(duration, display) {
         }
     }, 1000);
 }
+
+// timer for player 2
 function startTimer2(duration, display) {
     let timer = duration, seconds;
     timerInterval = setInterval(() => { 
@@ -90,7 +91,7 @@ grids.forEach(grid => {
     grid.addEventListener('click', () => {
         if (x) aud1.play()
         else aud2.play();
-        if (grid.innerHTML != 'O' && grid.innerHTML != 'X') {
+        if (grid.innerHTML != 'O' && grid.innerHTML != 'X') { // inserting X,O in the grid
             if (x) {
                 grid.textContent = 'X';
                 x = false;
@@ -104,7 +105,8 @@ grids.forEach(grid => {
         }
         if (x) turn.textContent = 'TURN : X';
         else turn.textContent = 'TURN : O';
-        function over(n){
+
+        function over(n){ // game end
             win.play();
             setTimeout(() => {
                 alert(grids[n].innerHTML+' wins!');
@@ -112,7 +114,7 @@ grids.forEach(grid => {
             }, 500);
         }
         
-
+        // checking for win conditions
         if (grids[4].innerHTML == grids[0].innerHTML && grids[4].innerHTML!='' && grids[4].innerHTML == grids[8].innerHTML){
             over(4);
         }
@@ -144,6 +146,7 @@ grids.forEach(grid => {
             over(8);
            
         }
+        // checking fro draw condition
         else if (c==9){
             fail.play();
             setTimeout(() => {
